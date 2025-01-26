@@ -34,15 +34,14 @@ public class RuleController {
     @PostMapping("/save")
     @ApiOperation(value = "保存规则", notes = "保存规则用于测试")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "content", value = "反馈建议内容", required = true),
+            @ApiImplicitParam(name = "account", value = "交易账户", required = true),
             @ApiImplicitParam(name = "mobile", value = "手机号"),
             @ApiImplicitParam(name = "qq", value = "qq号"),
             @ApiImplicitParam(name = "weixin", value = "微信号"),
             @ApiImplicitParam(name = "userCode", value = "用户编号")
     })
     public BaseResult saveRule(@RequestBody Rule rule){
-        int result = ruleService.saveRule(rule);
-        return BaseResult.success(result);
+        return BaseResult.success(ruleService.saveRule(rule));
     }
 
     // 删除用户
