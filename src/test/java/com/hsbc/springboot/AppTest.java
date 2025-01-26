@@ -6,6 +6,7 @@ import com.hsbc.springboot.core.RuleParser;
 import com.hsbc.springboot.entity.Transaction;
 import com.hsbc.springboot.service.FraudDetectionService;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -44,10 +45,15 @@ public class AppTest {
 
     private static final String TOPIC = "test-topic";
 
+    @org.junit.jupiter.api.Test
+    public void shouldAnswerWithTrue2() {
+        Assertions.assertTrue(true);
+    }
+
     @Test
     public void shouldAnswerWithTrue() {
         fraudDetectionService.analyzeTransaction(null);
-        assertEquals(true,true);
+        Assertions.assertTrue(true);
     }
 
     /**
