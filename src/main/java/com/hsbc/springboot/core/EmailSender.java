@@ -1,6 +1,7 @@
 package com.hsbc.springboot.core;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,15 @@ public class EmailSender {
     @Autowired
     private JavaMailSender mailSender;
 
-    public void sendSimpleEmail(String to, String subject, String text) {
+    @Value("hsbc.email.from")
+    private String eMailFrom;
+
+    @Value("hsbc.email.to")
+    private String eMailTo;
+
+    public void sendSimpleEmail(String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(to);
+        message.setTo(eMailTo);
         message.setSubject(subject);
         message.setText(text);
         message.setFrom("yan_shaohui@126.com");

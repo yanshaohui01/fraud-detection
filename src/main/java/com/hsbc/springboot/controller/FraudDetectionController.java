@@ -2,7 +2,7 @@ package com.hsbc.springboot.controller;
 
 import com.hsbc.springboot.core.FraudDetectionRuleParser;
 import com.hsbc.springboot.entity.Transaction;
-import com.hsbc.springboot.service.KafkaProducerService;
+import com.hsbc.springboot.core.KafkaProducerSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +21,7 @@ public class FraudDetectionController {
     private FraudDetectionRuleParser ruleService;
 
     @Autowired
-    private KafkaProducerService kafkaProducerService;
+    private KafkaProducerSender kafkaProducerService;
 
     @PostMapping("/detectFraud")
     public boolean detectFraud(@RequestBody Transaction transaction) {

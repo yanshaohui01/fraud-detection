@@ -21,9 +21,9 @@ public class ThreadPoolConfig {
     public Executor syncfraudDetectionExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         // 核心线程数
-        executor.setCorePoolSize(5);
+        executor.setCorePoolSize(GlobalVariable.SYSTEM_PROPERTY_PARALLEL);
         // 最大线程数
-        executor.setMaxPoolSize(10);
+        executor.setMaxPoolSize(GlobalVariable.SYSTEM_PROPERTY_PARALLEL * 2);
         // 队列容量
         executor.setQueueCapacity(25);
         // 线程名称前缀

@@ -42,14 +42,14 @@ public class FraudDetectionFilter extends OncePerRequestFilter {
 
         // Extract transaction from the request (example: reading from JSON payload)
         Transaction transaction = extractTransactionFromRequest(request);
-
-        if (transaction != null) {
-            syncfraudDetectionExecutor.execute(() -> {
-                fraudDetectionService.analyzeTransaction(transaction);
-                fraudDetectionService.handleComplexAnalysis(transaction);
-            });
+        if(!request.getRequestURI().contains("swagger-ui")){
+            if (transaction != null) {
+                syncfraudDetectionExecutor.execute(() -> {
+                    fraudDetectionService.analyzeTransaction(transaction);
+                    fraudDetectionService.handleComplexAnalysis(transaction);
+                });
+            }
         }
-
         filterChain.doFilter(request, response);
     }
 

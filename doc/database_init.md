@@ -54,7 +54,7 @@ rule 规则载入redis中；
     - amount: 金额 (decimal)
     - transaction_type: 交易类型 (varchar)
     - timestamp: 交易时间 (datetime)
-    - status: 状态 (varchar)
+    - status: 状态 (varchar) 0 无效 1 有效
 
 3. 异常交易表 (fraud_transaction)
     - id: 主键 (int, 自增)

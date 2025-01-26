@@ -30,4 +30,17 @@ public class Transaction implements Serializable {
     private String status;
     private String country;
 
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", amount=" + amount +
+                ", account='" + account + '\'' +
+                ", transactionType='" + transactionType + '\'' +
+                ", timestamp=" + timestamp +
+                ", status='" + status + '\'' +
+                ", country='" + country + '\'' +
+                '}';
+    }
 }

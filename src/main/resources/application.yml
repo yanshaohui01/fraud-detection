@@ -41,3 +41,8 @@ spring:
       missing-topics-fatal: false
 server:
   port: 8088
+
+hsbc:
+  email:
+    from: yan_shaohui@126.com
+    to: 1029588722@qq.com

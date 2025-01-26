@@ -18,8 +18,10 @@ import java.util.Date;
 
 import static junit.framework.TestCase.assertTrue;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
- * Unit test for simple App.
+ * Unit test for FraudDetectionApp.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -45,28 +47,41 @@ public class AppTest {
     @Test
     public void shouldAnswerWithTrue() {
         fraudDetectionService.analyzeTransaction(null);
-        assertTrue(true);
+        assertEquals(true,true);
     }
 
+    /**
+     * 规则解析测试用例
+     */
     @Test
     public void ruleParserTest() {
        Transaction transaction = new Transaction();
-       transaction.setAmount(new BigDecimal(10000));
+       transaction.setAmount(new BigDecimal(50000));
        transaction.setCountry("US");
        transaction.setId(1);
        transaction.setStatus("1");
        transaction.setTimestamp(new Date());
        transaction.setTransactionType("转账");
        transaction.setUserId(1);
-       String ruleExpression = "amount > 1000";
-       ruleParser.processTransaction(transaction);
+       boolean result = ruleParser.processTransaction(transaction);
+        assertEquals(true,result);
     }
 
+
+    /**
+     * 发送MQ消息测试用例
+     */
     @Test
     public  void kafkaTest() {
         String message = "this is a test message, from developer to test-topic, 测试汉语编码";
         kafkaTemplate.send(TOPIC, message);
         System.out.println("Produced message: " + message);
-
+        assertEquals(true,true);
     }
+
+    /**
+     * 发送邮件测试用例
+     */
+
+
 }

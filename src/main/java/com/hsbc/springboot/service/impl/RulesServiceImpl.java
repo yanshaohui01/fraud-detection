@@ -8,7 +8,6 @@ import com.hsbc.springboot.entity.Rule;
 import com.hsbc.springboot.mapper.RuleMapper;
 import com.hsbc.springboot.service.RuleService;
 import io.netty.util.internal.StringUtil;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -45,7 +44,7 @@ public class RulesServiceImpl implements RuleService {
         HashOperations<String,Object,Object> hasOps = redisTemplate.opsForHash();
         int result = ruleMapper.insert(rule);
         if(result > 0){
-            hasOps.put(GlobalVariable.rulesHash,rule.getRuleName(),rule.getRuleDescription());
+            hasOps.put(GlobalVariable.RULE_HASH,rule.getRuleName(),rule.getRuleDescription());
         }
         return result;
     }
@@ -56,7 +55,7 @@ public class RulesServiceImpl implements RuleService {
         Rule rule = ruleMapper.selectById(id);
         int result = ruleMapper.deleteById(id);
         if(result > 0){
-            hasOps.delete(GlobalVariable.rulesHash,rule.getRuleName());
+            hasOps.delete(GlobalVariable.RULE_HASH,rule.getRuleName());
         }
         return result;
     }
@@ -67,7 +66,7 @@ public class RulesServiceImpl implements RuleService {
         int result = ruleMapper.updateById(rule);
         if(result > 0){
             Rule newRule = getRuleById(rule.getId());
-            hasOps.delete(GlobalVariable.rulesHash,newRule.getRuleName(),newRule.getRuleDescription());
+            hasOps.delete(GlobalVariable.RULE_HASH,newRule.getRuleName(),newRule.getRuleDescription());
         }
         return result;
     }

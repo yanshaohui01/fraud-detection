@@ -28,4 +28,15 @@ public class Rule  implements Serializable {
     private Date updatedAt;
     private boolean state;
 
+    @Override
+    public String toString() {
+        return "Rule{" +
+                "id=" + id +
+                ", ruleName='" + ruleName + '\'' +
+                ", ruleDescription='" + ruleDescription + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", state=" + state +
+                '}';
+    }
 }

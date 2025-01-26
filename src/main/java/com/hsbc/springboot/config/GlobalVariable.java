@@ -10,6 +10,8 @@ package com.hsbc.springboot.config;
  */
 public class GlobalVariable {
 
-    public static final String rulesHash = "rulesHash:rules";
+    public static final String RULE_HASH = "rulesHash:rules";
+    public static final int SYSTEM_PROPERTY_PARALLEL = Math.max(2, Runtime.getRuntime().availableProcessors());
+
 
 }
