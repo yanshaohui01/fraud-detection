@@ -120,8 +120,7 @@ CREATE TABLE transactions (
     transaction_type VARCHAR(50) NOT NULL,
     timestamp DATETIME NOT NULL,
     status VARCHAR(50),
-    FOREIGN KEY (user_id) REFERENCES users(id),
-	FOREIGN KEY (rule_id) REFERENCES rule(id)
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 -- 异常交易表

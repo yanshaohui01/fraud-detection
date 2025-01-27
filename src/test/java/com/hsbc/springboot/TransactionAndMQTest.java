@@ -1,6 +1,7 @@
 package com.hsbc.springboot;
 
 
+import com.hsbc.springboot.core.EmailSender;
 import com.hsbc.springboot.core.FraudDetectionRuleParser;
 import com.hsbc.springboot.core.RuleParser;
 import com.hsbc.springboot.entity.Transaction;
@@ -22,14 +23,12 @@ import static junit.framework.TestCase.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
+ * 交易和MQ队列及email发送单元测试
  * Unit test for FraudDetectionApp.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AppTest {
-
-    @Autowired
-    private ApplicationContext applicationContext;
+public class TransactionAndMQTest {
 
     @Autowired
     private FraudDetectionService fraudDetectionService;
@@ -43,12 +42,12 @@ public class AppTest {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
+    @Autowired
+    private EmailSender emailSender;
+
+
     private static final String TOPIC = "test-topic";
 
-    @org.junit.jupiter.api.Test
-    public void shouldAnswerWithTrue2() {
-        Assertions.assertTrue(true);
-    }
 
     @Test
     public void shouldAnswerWithTrue() {
@@ -68,7 +67,6 @@ public class AppTest {
        transaction.setStatus("1");
        transaction.setTimestamp(new Date());
        transaction.setTransactionType("转账");
-       transaction.setUserId(1);
        boolean result = ruleParser.processTransaction(transaction);
         assertEquals(true,result);
     }
@@ -88,6 +86,11 @@ public class AppTest {
     /**
      * 发送邮件测试用例
      */
-
+    @Test
+    public  void emailTest() {
+        String message = "this is a test message, from developer to test-topic, 测试汉语编码";
+        emailSender.sendSimpleEmail("this is subject","this is text!");
+        assertEquals(true,true);
+    }
 
 }

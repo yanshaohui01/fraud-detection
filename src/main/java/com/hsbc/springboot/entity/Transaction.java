@@ -22,7 +22,6 @@ import java.util.Date;
 public class Transaction implements Serializable {
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private Integer userId;
     private BigDecimal amount;
     private String account;
     private String transactionType;
@@ -34,7 +33,6 @@ public class Transaction implements Serializable {
     public String toString() {
         return "Transaction{" +
                 "id=" + id +
-                ", userId=" + userId +
                 ", amount=" + amount +
                 ", account='" + account + '\'' +
                 ", transactionType='" + transactionType + '\'' +

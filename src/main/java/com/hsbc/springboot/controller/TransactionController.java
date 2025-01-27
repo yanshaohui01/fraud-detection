@@ -32,13 +32,14 @@ public class TransactionController {
     private TransactionService transactionService;
 
     @PostMapping("/save")
-    @ApiOperation(value = "保存规则", notes = "保存规则用于测试")
+    @ApiOperation(value = "交易接口", notes = "进行交易接口，用于测试")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "ruleName", value = "规则名称", required = true),
-            @ApiImplicitParam(name = "ruleDescription", value = "规则说明", required = true),
-            @ApiImplicitParam(name = "createdAt", value = "创建时间"),
-            @ApiImplicitParam(name = "updatedAt", value = "更新时间"),
-            @ApiImplicitParam(name = "state", value = "状态 0 废弃，1生效", required = true)
+            @ApiImplicitParam(name = "amount", value = "金额", required = true),
+            @ApiImplicitParam(name = "account", value = "账户", required = true),
+            @ApiImplicitParam(name = "country", value = "交易地区：国家"),
+            @ApiImplicitParam(name = "transactionType", value = "默认值1，转账交易"),
+            @ApiImplicitParam(name = "timestamp", value = "交易时间"),
+            @ApiImplicitParam(name = "state", value = "状态 0 废弃，1生效,默认1")
     })
     public BaseResult saveTransaction(@ApiIgnore @RequestBody Transaction rule){
         return BaseResult.success(transactionService.saveTransaction(rule));
@@ -46,7 +47,7 @@ public class TransactionController {
 
     // 删除用户
     @GetMapping("/del/{id}")
-    @ApiOperation(value = "根据ID删除规则", notes = "删除规则用于测试")
+    @ApiOperation(value = "根据ID删除交易记录", notes = "删除交易用于测试")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "规则id", required = true)
     })
@@ -57,21 +58,21 @@ public class TransactionController {
 
     // 修改用户信息
     @PostMapping("/update")
-    @ApiOperation(value = "根据ID更新规则", notes = "更新规则用于测试")
+    @ApiOperation(value = "根据ID更新交易记录", notes = "更新交易记录用于测试")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "规则id", required = true),
-            @ApiImplicitParam(name = "ruleName", value = "规则名称", required = true),
-            @ApiImplicitParam(name = "ruleDescription", value = "规则说明", required = true),
-            @ApiImplicitParam(name = "createdAt", value = "创建时间"),
-            @ApiImplicitParam(name = "updatedAt", value = "更新时间"),
-            @ApiImplicitParam(name = "state", value = "状态 0 废弃，1生效", required = true)
+            @ApiImplicitParam(name = "amount", value = "金额", required = true),
+            @ApiImplicitParam(name = "account", value = "账户", required = true),
+            @ApiImplicitParam(name = "country", value = "交易地区：国家"),
+            @ApiImplicitParam(name = "transactionType", value = "默认值1，转账交易"),
+            @ApiImplicitParam(name = "timestamp", value = "交易时间"),
+            @ApiImplicitParam(name = "state", value = "状态 0 废弃，1生效,默认1")
     })
     public BaseResult updateTransaction(@ApiIgnore @RequestBody Transaction rule) {
         int result = transactionService.updateTransaction(rule);
         return BaseResult.success(result);
     }
 
-    @ApiOperation(value = "分页无条件查询规则", notes = "查询规则用于测试")
+    @ApiOperation(value = "分页无条件查询交易记录", notes = "查询交易记录用于测试")
     @GetMapping("/getRulePage")
     public BaseResult<IPage<Transaction>> getRulePage(){
         IPage<Transaction> ipage = transactionService.getTransactionByPage(1,5);

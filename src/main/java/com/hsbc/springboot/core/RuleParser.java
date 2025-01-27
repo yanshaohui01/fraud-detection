@@ -79,8 +79,8 @@ public class RuleParser {
             boolean isFraud = evaluateRule(transaction, rule);
             fraud[index++] = isFraud;
             if (isFraud) {
-                String notice = String.format(" 交易：%d, 账号：%s, 金额: %d  存在违规行为：%s, 请确认",
-                        transaction.getId(),transaction.getAccount(),transaction.getAmount(),rule);
+                String notice = String.format(" 交易：%d, 账号：%s, 金额: %s  存在违规行为：%s, 请确认",
+                        transaction.getId(),transaction.getAccount(),transaction.getAmount().toString(),rule);
                 stringBuilder.append(notice).append("\n");
                 kafkaProducerSender.sendMessage(notice);
             }
@@ -91,15 +91,16 @@ public class RuleParser {
         }
         if(!result){
             FraudTransaction fraudTransaction = new FraudTransaction();
-            fraudTransaction.setId(transaction.getId());
             fraudTransaction.setAlertDescription(stringBuilder.substring(0,stringBuilder.length()-2));
-            fraudTransactionMapper.updateById(fraudTransaction);
+            fraudTransaction.setTransactionId(transaction.getId());
+            fraudTransaction.setAlertType("1");
+            fraudTransactionMapper.insert(fraudTransaction);
         }
         return result;
     }
 
     private void triggerAlert(Transaction transaction, String rule) {
-        System.out.printf("Fraud detected for Transaction ID: %d transaction.getId()  by rule: %d", transaction.getId(), transaction.getUserId());
+        System.out.printf("Fraud detected for Transaction ID: %d transaction.getId()  by rule: %d", transaction.getId(), transaction.getTimestamp());
                 // 触发通知机制（如短信、邮件等）
     }
 }

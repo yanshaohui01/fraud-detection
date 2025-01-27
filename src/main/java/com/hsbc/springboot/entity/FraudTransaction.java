@@ -25,5 +25,6 @@ public class FraudTransaction  implements Serializable {
     private String alertType;
     private String alertDescription;
     private Date detectedAt;
+    private String statue;
 
 }

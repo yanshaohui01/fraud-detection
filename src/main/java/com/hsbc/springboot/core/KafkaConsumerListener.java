@@ -1,5 +1,6 @@
 package com.hsbc.springboot.core;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,11 @@ import org.springframework.stereotype.Service;
  * @author: bruce
  * @date: 2025/1/25 9:06
  */
+@Slf4j
 @Service
 public class KafkaConsumerListener {
-    @KafkaListener(topics = "test-topic", groupId = "my-group", properties={"bootstrap.servers=122.9.206.65:9092"})
+    @KafkaListener(topics = "test-topic", groupId = "my-group")
     public void listen(String message) {
-        System.out.println("Consumed message: " + message);
+        log.warn("transaction exception message: {}",message);
     }
 }

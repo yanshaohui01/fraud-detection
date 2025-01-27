@@ -1,7 +1,6 @@
 package com.hsbc.springboot;
 
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
+
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.hsbc.springboot.controller.RuleController;
 import com.hsbc.springboot.entity.Rule;
@@ -12,12 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 /**
- * 规则测试  CURD
+ * 规则单元测试
  *
  * @className: RuleTest
  * @package: com.hsbc.springboot

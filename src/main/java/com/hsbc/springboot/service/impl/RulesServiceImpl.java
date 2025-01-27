@@ -73,7 +73,10 @@ public class RulesServiceImpl implements RuleService {
 
     @Override
     public List<Rule> getAllRule() {
-        return ruleMapper.selectList(null);
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.isNotNull("rule_name");
+        queryWrapper.eq("state",true);
+        return ruleMapper.selectList(queryWrapper);
     }
 
     @Override

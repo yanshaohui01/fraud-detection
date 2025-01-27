@@ -19,10 +19,10 @@ public class EmailSender {
     @Autowired
     private JavaMailSender mailSender;
 
-    @Value("hsbc.email.from")
+    @Value("${hsbc.email.from}")
     private String eMailFrom;
 
-    @Value("hsbc.email.to")
+    @Value("${hsbc.email.to}")
     private String eMailTo;
 
     public void sendSimpleEmail(String subject, String text) {

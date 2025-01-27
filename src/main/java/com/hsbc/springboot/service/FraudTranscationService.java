@@ -1,6 +1,8 @@
 package com.hsbc.springboot.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.hsbc.springboot.entity.FraudTransaction;
+import com.hsbc.springboot.entity.Transaction;
 
 /**
  * 〈功能概述〉<br>
@@ -13,4 +15,6 @@ import com.hsbc.springboot.entity.FraudTransaction;
 public interface FraudTranscationService {
     int updateById(FraudTransaction fraudTransaction);
     int save(FraudTransaction fraudTransaction);
+    // 分页查询
+    IPage<FraudTransaction> getFTByPage(int pageNum, int pageSize);
 }

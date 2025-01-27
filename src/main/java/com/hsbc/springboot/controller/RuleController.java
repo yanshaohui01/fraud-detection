@@ -39,7 +39,7 @@ public class RuleController {
             @ApiImplicitParam(name = "ruleDescription", value = "规则说明", required = true),
             @ApiImplicitParam(name = "createdAt", value = "创建时间"),
             @ApiImplicitParam(name = "updatedAt", value = "更新时间"),
-            @ApiImplicitParam(name = "state", value = "状态 0 废弃，1生效", required = true)
+            @ApiImplicitParam(name = "state", value = "状态 0 废弃，1生效 默认1")
     })
     public BaseResult saveRule(@ApiIgnore @RequestBody Rule rule){
         return BaseResult.success(ruleService.saveRule(rule));

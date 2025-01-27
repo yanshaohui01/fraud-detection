@@ -42,17 +42,14 @@ public class TransactionServiceImpl extends ServiceImpl<TransactionsMapper, Tran
     @Override
     @Transactional
     public int saveTransaction(Transaction transaction) {
-        boolean result = ruleParser.processTransaction(transaction);
         this.save(transaction);
+        boolean result = ruleParser.processTransaction(transaction);
         if(result){
             log.info("交易： {}  正常！",transaction.toString());
         }else{
-            log.info(" 交易： {}  异常！",transaction.toString());
-            FraudTransaction fraudTransaction = new FraudTransaction();
-            fraudTransaction.setTransactionId(transaction.getId());
-            fraudTransactionMapper.insert(fraudTransaction);
+            log.warn(" 交易： {}  异常！",transaction.toString());
         }
-        return 1;
+        return result == false? -1 : 0;
     }
 
     @Override
