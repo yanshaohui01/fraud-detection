@@ -33,7 +33,7 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Spring Boot 2.2.5 集成 Swagger 示例")
+                .title("HSBC 实时交易欺诈检测系统接口文档")
                 .description("实时欺诈检测系统，用于生成 API 文档。")
                 .version("1.0.0")
                 .build();
