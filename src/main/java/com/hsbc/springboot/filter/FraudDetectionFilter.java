@@ -14,14 +14,14 @@ import java.io.IOException;
 import java.util.concurrent.Executor;
 
 /**
- * 〈功能概述〉<br>
+ * 基于过滤器链的模式暂不启用
  *
  * @className: FraudDetectionFilter
  * @package: com.hsbc.springboot.filter
  * @author: bruce
  * @date: 2025/1/24 14:56
  */
-@Component
+//@Component
 public class FraudDetectionFilter extends OncePerRequestFilter {
 
     @Autowired
